@@ -59,6 +59,10 @@ p{
     text-decoration: none;
 }
 
+.padleft40{
+	padding-left: 40px;
+}
+
 /* footer */
 footer {
 	margin-top: 45px;

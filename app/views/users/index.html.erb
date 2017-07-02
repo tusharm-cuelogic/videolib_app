@@ -1,6 +1,7 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+<div class="padleft40"><%= link_to "+ Add User", '/add/user' %></div>
 <ul class="users">
 	<%= render @users %>
 </ul>
