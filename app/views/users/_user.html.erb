@@ -1,6 +1,9 @@
-<li>
-	<%= link_to user.first_name + " "+ user.last_name, user %>
-
-	| <%= link_to "Edit", edit_user_path(user) %> 
-	| <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" } %> 
-</li>
+<tr>
+	<th scope="row"><%= link_to user.first_name + " "+ user.last_name, user %></th>
+	<td><%= user.email %></td>
+	<td><%= user.date_of_birth %></td>
+	<td><%= user.address %></td>
+	<td><%= user.city %></td>
+	<td><%= user.country %></td>
+	<td><%= link_to "Edit", edit_user_path(user) %> | <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" } %></td>
+</tr>

@@ -1,0 +1,27 @@
+<% provide(:title, "Edit Video") %> 
+<h2>Update Video</h2>
+
+<div class="row">
+	<div class="span6 offset3"> 
+		<%= form_for(@video) do |f| %>
+			<%= render 'shared/error_messages' %> 
+			<input name="_method" type="hidden" value="put" />
+
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+
+			<%= f.label :video_url %>
+			<%= f.text_field :video_url %>
+
+			<%= f.label :category_id %>
+			<%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: 'Select Category'%>
+
+			<%= f.label :composer %>
+			<%= f.text_field :composer %> 
+
+			<%= f.label :is_active %>
+			<%= f.check_box :is_active %>
+
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		<% end %>
+</div>

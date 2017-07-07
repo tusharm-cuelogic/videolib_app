@@ -1,5 +1,5 @@
 <% provide(:title, "Edit user") %> 
-<h1>Update your profile</h1>
+<h2>Update your profile</h2>
 
 <div class="row">
 	<div class="span6 offset3"> 
@@ -20,6 +20,9 @@
 
 			<%= f.label :date_of_birth %>
 			<%= f.text_field :date_of_birth %>
+
+			<%= f.label :user_type %>
+			<%= f.select :user_type, options_for_select([ "admin", "subscriber" ], @user.user_type) %>
 
 			<%= f.label :address %>
 			<%= f.text_field :address %>

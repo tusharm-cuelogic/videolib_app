@@ -1,0 +1,38 @@
+<% provide(:title, 'All Videos') %>
+<h2>All Videos</h2>
+
+<div><%= link_to "+ Add Video", new_video_path %></div>
+
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Category</th>
+      <th>Composer</th>
+      <% if current_user.user_type == "admin" %>
+	      <th>User Name</th>
+	      <th>User Type</th>
+      <% end %>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% @video.each do |video| %>
+			<tr>
+		      <th scope="row"><%= video.title %></th>
+		      <td><%= video.video_url %></td>
+		      <td><%= Category.find(video.category_id).name %></td>
+		      <td><%= video.composer %></td>
+		      <% if current_user.user_type == "admin" %>
+			      <td><%= User.find(video.user_id).username %></td>
+			      <td><%= User.find(video.user_id).user_type %></td>
+		      <% end %>
+		      <td><%= video.is_active? ? 'Yes' : 'No' %></td>
+		      <td><%= link_to "Edit", edit_video_path(video) %> | <%= link_to "Delete", video_path(video), method: :delete, data: { confirm: "Are you sure?" }%></td>
+		    </tr>
+		<% end %>
+	</tbody>
+</table>
+<div><%= paginate @video %></div>

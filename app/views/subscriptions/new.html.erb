@@ -1,0 +1,27 @@
+<% provide(:title, 'Add Subscription Plan') %> 
+<h2>Add Subscription Plan</h2>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@subscription, url: subscriptions_path) do |f| %> 
+
+			<%= render 'shared/error_messages' %>
+
+			<%= f.label :plan_code %>
+			<%= f.text_field :plan_code %>
+
+			<%= f.label :no_of_videos_allowed %>
+			<%= f.text_field :no_of_videos %>
+
+			<%= f.label :expiry_in_days %>
+			<%= f.text_field :expiry_in_days %> 
+
+			<%= f.label :cost %>
+			<%= f.text_field :cost %>
+
+			<%= f.label :is_active %>
+			<%= f.check_box :is_active %>
+
+			<%= f.submit "Save", class: "btn btn-large btn-primary" %> 
+		<% end %>
+	</div>
+</div>

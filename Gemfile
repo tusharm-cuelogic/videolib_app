@@ -7,6 +7,10 @@ gem 'sqlite3'
 
 # gem 'bootstrap-sass', '2.0.0'
 gem 'twitter-bootstrap-rails'
+gem "font-awesome-rails"
+gem 'kaminari'
+gem 'cancancan', '~> 1.10'
+gem 'aws-sdk'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

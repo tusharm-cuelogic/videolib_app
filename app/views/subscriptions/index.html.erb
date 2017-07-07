@@ -1,0 +1,46 @@
+<% provide(:title, 'All Subscriptions') %>
+<h2>All Subscriptions</h2>
+
+<% if current_user.user_type == "admin" %>
+	<div><%= link_to "+ Add Subscription", new_subscription_path %></div>
+<% end %>
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th>Plan Code</th>
+      <th>No. Of Videos Allowed</th>
+      <th>Expiry In Days</th>
+
+      <th>Cost</th>
+      <% if current_user.user_type == "admin" %>
+      	<th>Status</th>
+      <% end %>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% @subscription.each do |subscription| %>
+			<tr>
+				<th scope="row"><%= subscription.plan_code %></th>
+				<td><%= subscription.no_of_videos %></td>
+				<td><%= subscription.expiry_in_days %></td>
+				<td>$<%= subscription.cost %></td>
+				<% if current_user.user_type == "admin" %>
+				  <td><%= subscription.is_active? ? 'Yes' : 'No' %></td>
+				  <td><%= link_to "Edit", edit_subscription_path(subscription) %> | <%= link_to "Delete", subscription_path(subscription), method: :delete, data: { confirm: "Are you sure?" }%></td>
+				<% else %>
+					<% if @user.subscription_id.nil? %>
+						<td><%= link_to "subscribe", "/subscribe/#{subscription.id}" %></td>
+					<% else %>
+						<% if @user.subscription_id == subscription.id %>
+							<td>subscribed</td>
+						<% else %>
+							<td><%= link_to "Upgrade", "/subscribe/#{subscription.id}" %></td>
+						<% end %>
+					<% end %>
+				<% end %>
+		    </tr>
+		<% end %>
+	</tbody>
+</table>
+<div><%= paginate @subscription %></div>

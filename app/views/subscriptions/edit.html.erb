@@ -1,0 +1,27 @@
+<% provide(:title, "Edit Video") %> 
+<h2>Update Video</h2>
+
+<div class="row">
+	<div class="span6 offset3"> 
+		<%= form_for(@subscription) do |f| %>
+			<%= render 'shared/error_messages' %> 
+			<input name="_method" type="hidden" value="put" />
+
+			<%= f.label :plan_code %>
+			<%= f.text_field :plan_code %>
+
+			<%= f.label :no_of_videos_allowed %>
+			<%= f.text_field :no_of_videos %>
+
+			<%= f.label :expiry_in_days %>
+			<%= f.text_field :expiry_in_days %> 
+
+			<%= f.label :cost %>
+			<%= f.text_field :cost %>
+
+			<%= f.label :is_active %>
+			<%= f.check_box :is_active %>
+
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		<% end %>
+</div>

@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  resources :users, only: [:index, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update, :destroy], constraints: { format: 'json' } 
   root to: 'static_pages#home'
   match '/about', to: 'static_pages#about', via: :get
   match '/add/user', to: 'users#new', via: :get
   match '/add/user', to: 'users#create', via: :post
+
+  resources :video_category, only: [:edit, :update, :destroy]
+  match '/category/new', to: 'video_category#new', via: :get
+  match '/category/new', to: 'video_category#create', via: :post
+  match '/category', to: 'video_category#index', via: :get
+
+  resources :video
+  resources :subscriptions
+
+  resources :uploads
+
+  match '/subscribe/:id', to: 'subscriptions#subscribe', via: :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,27 @@
+<% provide(:title, 'All Categories') %>
+<h2>All Categories</h2>
+
+<div><%= link_to "+ Add Category", category_new_path %></div>
+
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% @category.each do |category| %>
+
+			<tr>
+		      <th scope="row"><%= category.name %></th>
+		      <td><%= category.code %></td>
+		      <td width="70%"><%= category.description %></td>
+		      <td><%= link_to "Edit", edit_video_category_path(category) %> | <%= link_to "Delete", video_category_path(category), method: :delete, data: { confirm: "Are you sure?" }%></td>
+		    </tr>
+		<% end %>
+	</tbody>
+</table>
+<div><%= paginate @category %></div>
